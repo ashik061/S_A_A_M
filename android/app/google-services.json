@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "695215636312",
+    "project_id": "saam-31858",
+    "storage_bucket": "saam-31858.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695215636312:android:c6397dbcfcba770445ef2d",
+        "android_client_info": {
+          "package_name": "com.example.s_a_a_m"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695215636312-qtom5dkfqbkp1ratb3fu53rfm3elrd1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ7Sk6EgfPyVmpeKcaaUdXOufzcPecZ3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695215636312-qtom5dkfqbkp1ratb3fu53rfm3elrd1v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "695215636312-6ggnaqau13kpa12mnomjqba85ctsp431.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sAAm.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
