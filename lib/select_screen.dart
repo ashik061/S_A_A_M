@@ -5,6 +5,7 @@ import 'package:s_a_a_m/screens/login_and_register.dart';
 
 class SelectScreen extends StatefulWidget {
   const SelectScreen({super.key});
+  static String routeName = 'SelectScreen';
 
   @override
   State<SelectScreen> createState() => _SelectScreenState();
