@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:s_a_a_m/firebase_options.dart';
-import 'package:s_a_a_m/select_screen.dart';
+import 'package:s_a_a_m/routes.dart';
+import 'package:s_a_a_m/screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SelectScreen(),
+      initialRoute: SplashScreen.routeName,
+      routes: routes,
+      //home: const SelectScreen(),
     );
   }
 }
