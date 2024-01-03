@@ -4,6 +4,13 @@ import 'package:s_a_a_m/firebase_options.dart';
 import 'package:s_a_a_m/routes.dart';
 import 'package:s_a_a_m/screens/splash_screen.dart';
 
+//importing file for face detection
+
+
+import 'package:s_a_a_m/painters/face_detector_painter.dart';
+import 'package:s_a_a_m/painters/coordinates_translator.dart';
+//import 'package:s_a_a_m/face_recognize/face_recognition_view.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
