@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[900],
         title: const Text(
-          'SAAM',
+          "SAAM",
           style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -167,7 +167,7 @@ class Home extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const FaceScan(),
+                    builder: (context) => Home(),
                   ),
                 ),
                 child: Padding(
@@ -180,7 +180,7 @@ class Home extends StatelessWidget {
                       padding: EdgeInsets.all(16.0),
                       child: Center(
                         child: Text(
-                          'Scan Face',
+                          'scan Face',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 25,
@@ -190,7 +190,35 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              // GestureDetector(
+              //   onTap: () => Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => const FaceRecognitionPage(),
+              //     ),
+              //   ),
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(20.0),
+              //     child: Container(
+              //       decoration: BoxDecoration(
+              //           color: Colors.blueGrey[900],
+              //           borderRadius: BorderRadius.circular(20)),
+              //       child: const Padding(
+              //         padding: EdgeInsets.all(16.0),
+              //         child: Center(
+              //           child: Text(
+              //             'Recognize Face',
+              //             style: TextStyle(
+              //                 color: Colors.white,
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),
