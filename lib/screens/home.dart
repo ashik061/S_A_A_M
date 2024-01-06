@@ -3,7 +3,7 @@ import 'package:s_a_a_m/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:s_a_a_m/components/navigation_drawer.dart';
 import 'package:s_a_a_m/screens/create_class.dart';
-import 'package:s_a_a_m/screens/face_scan.dart';
+//import 'package:s_a_a_m/screens/face_scan.dart';
 import 'package:s_a_a_m/screens/join_class.dart';
 
 class Home extends StatelessWidget {

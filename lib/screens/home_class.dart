@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:s_a_a_m/components/navigation_drawer.dart';
 import 'package:s_a_a_m/screens/classroom.dart';
 import 'package:s_a_a_m/screens/create_class.dart';
-import 'package:s_a_a_m/screens/face_scan.dart';
+//import 'package:s_a_a_m/screens/face_scan.dart';
 import 'package:s_a_a_m/screens/join_class.dart';
 
 class ClassesHome extends StatefulWidget {
