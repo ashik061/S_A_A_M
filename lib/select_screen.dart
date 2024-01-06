@@ -1,6 +1,7 @@
 import 'package:s_a_a_m/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:s_a_a_m/screens/home.dart';
+import 'package:s_a_a_m/screens/home_class.dart';
 import 'package:s_a_a_m/screens/login_and_register.dart';
 
 class SelectScreen extends StatefulWidget {

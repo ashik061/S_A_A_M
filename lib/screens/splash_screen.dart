@@ -4,10 +4,6 @@ import 'package:s_a_a_m/select_screen.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  Widget _title() {
-    return const Text('SAAM');
-  }
-
   static String routeName = 'SplashScreen';
 
   @override
@@ -27,7 +23,30 @@ class SplashScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _title(),
+            Image.asset(
+              'images/launcher_icon.png',
+              height: 200,
+              width: 200,
+            ),
+            const Text(
+              'S A A M',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: Colors.blueGrey,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text(
+              'System for Auntomatic Attendance Management',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),

@@ -1,33 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:s_a_a_m/auth.dart';
 import 'package:flutter/material.dart';
-
-//import 'package:s_a_a_m/face_recognize/face_recognition_view.dart';
+import 'package:s_a_a_m/components/navigation_drawer.dart';
+import 'package:s_a_a_m/screens/create_class.dart';
+//import 'package:s_a_a_m/screens/face_scan.dart';
+import 'package:s_a_a_m/screens/join_class.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
 
   final User? user = Auth().currentUser;
-  
-
-
-  String? _getusername(User user) {
-    print(user.displayName);
-    return user.displayName;
-  }
 
   Future<void> signOut() async {
-    
     await Auth().signOut();
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
-        
         backgroundColor: Colors.blueGrey[900],
         title: const Text(
           "SAAM",
@@ -75,224 +67,60 @@ class Home extends StatelessWidget {
 
       // Navigation Drawer
 
-      drawer: Drawer(
-        backgroundColor: Colors.blueGrey[900],
-        child: Column(
-          children: [
-            //logo
-            DrawerHeader(
-              child: Column(
-                children: [
-                  Image.asset('images/launcher_icon.png'),
-                  const Text(
-                    'SAAM',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        letterSpacing: 4),
-                  ),
-                ],
-              ),
-            ),
+      drawer: const DrawerWidget(),
 
-            //other menu
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.home_work_sharp,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                title: const Text(
-                  'Classes',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
+      floatingActionButton: SizedBox(
+        height: 80,
+        width: 80,
+        child: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        leading: const Icon(Icons.people_alt_outlined),
+                        title: const Text('Join a class'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return JoinClassDialog();
+                            },
+                          );
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.person_outline),
+                        title: const Text('Create a class'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const CreateClassDialog();
+                            },
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                ),
-                onTap: () {
-                  //   var snackBar = SnackBar(
-                  //     content: Text(user!.uid),
-                  //   );
-
-                  //   // Find the ScaffoldMessenger in the widget tree
-                  //   // and use it to show a SnackBar.
-                  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  // // handle action
-                },
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.add_chart,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                title: const Text(
-                  'Attendance',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {
-                  // Handle  action
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.co_present_rounded,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                title: const Text(
-                  'Profile',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {
-                  // Handle  action
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.linked_camera,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                title: const Text(
-                  'Scan Face',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {
-                  // Handle  action
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.archive,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                title: const Text(
-                  'Archived',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {
-                  // handle action
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                title: const Text(
-                  'Settings',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {
-                  // handle action
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.logout,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                title: const Text(
-                  'Log Out',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {
-                  signOut();
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      leading: const Icon(Icons.people_alt_outlined),
-                      title: const Text('Join a class'),
-                      onTap: () {
-                        // Handle  action
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.person_outline),
-                      title: const Text('Create a class'),
-                      onTap: () {
-                        // Handle action
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
-        backgroundColor: Colors.blueGrey[900],
-        shape: const CircleBorder(),
-        child: const Icon(
-          Icons.add,
-          size: 35,
-          color: Colors.white,
+                );
+              },
+            );
+          },
+          backgroundColor: Colors.blueGrey[900],
+          shape: const CircleBorder(),
+          child: const Icon(
+            Icons.add,
+            size: 45,
+            color: Colors.white,
+          ),
         ),
       ),
       body: Container(
