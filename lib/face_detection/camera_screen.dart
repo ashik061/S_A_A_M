@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:s_a_a_m/screens/home_class.dart';
@@ -29,6 +30,7 @@ class _CameraScreenState extends State<CameraScreen> {
   late Timer _timer;
   bool _shouldCapture = true;
   List<Face> _detectedFaces = [];
+  static int random = 0;
 
   @override
   void initState() {
@@ -38,7 +40,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void _initializeCamera() async {
     _cameras = await availableCameras();
-    _controller = CameraController(_cameras[0], ResolutionPreset.medium);
+    _controller = CameraController(_cameras[1], ResolutionPreset.medium);
 
     _controller.initialize().then((_) {
       if (!mounted) {
@@ -49,6 +51,7 @@ class _CameraScreenState extends State<CameraScreen> {
       });
       _startPeriodicCapture();
       _stopCamera();
+     
     });
   }
 
@@ -65,13 +68,14 @@ class _CameraScreenState extends State<CameraScreen> {
       if (mounted) {
         _shouldCapture = false;
         _controller.stopImageStream();
-        dispose();
+        
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ClassesHome(),
           ),
         );
+        dispose();
       }
     });
   }
@@ -80,6 +84,7 @@ class _CameraScreenState extends State<CameraScreen> {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (mounted && _shouldCapture && !_controller.value.isTakingPicture) {
         _captureImage();
+         random++;
       }
     });
   }
@@ -93,7 +98,8 @@ class _CameraScreenState extends State<CameraScreen> {
       final XFile picture = await _controller.takePicture();
       final File imageFile = File(picture.path);
 
-      String userId = FirebaseAuth.instance.currentUser?.uid ?? 'unknown_user';
+      String userEmail =
+          FirebaseAuth.instance.currentUser?.email ?? 'unknown_user';
 
       final InputImage visionImage = InputImage.fromFilePath(imageFile.path);
       final options = FaceDetectorOptions();
@@ -106,13 +112,17 @@ class _CameraScreenState extends State<CameraScreen> {
 
       faceDetector.close();
 
-      await uploadImageToFirebase(imageFile, '$userId/original');
+      await uploadImageToFirebase(imageFile, '$userEmail/original');
 
-      for (int i = 0; i < _detectedFaces.length; i++) {
-        final Face face = _detectedFaces[i];
-        final File croppedFace = await _cropFace(imageFile, face);
-        await uploadImageToFirebase(croppedFace, '$userId/face_$i');
-      }
+      final Face face = _detectedFaces[0];
+      final File croppedFace = await _cropFace(imageFile, face);
+      await uploadImageToFirebase(croppedFace, '$userEmail/face_$random');
+
+      // for (int i = 0; i < _detectedFaces.length; i++) {
+      //   final Face face = _detectedFaces[i];
+      //   final File croppedFace = await _cropFace(imageFile, face);
+      //   await uploadImageToFirebase(croppedFace, '$userEmail/face_$i');
+      // }
 
       print('Picture captured and faces detected: ${picture.path}');
     } catch (e) {
@@ -183,18 +193,26 @@ class FacePainter extends CustomPainter {
 
   FacePainter(this.faces);
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = Colors.red
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0;
+@override
+void paint(Canvas canvas, Size size) {
+  final Paint paint = Paint()
+    ..color = Colors.red
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 2.0;
 
-    for (Face face in faces) {
-      final Rect boundingBox = face.boundingBox!;
-      canvas.drawRect(boundingBox, paint);
-    }
+  for (Face face in faces) {
+    final Rect boundingBox = face.boundingBox!;
+    final double left = (boundingBox.left * size.width).clamp(0, size.width - 1);
+    final double top = (boundingBox.top * size.height).clamp(0, size.height - 1);
+    final double right = (boundingBox.right * size.width).clamp(0, size.width - 1);
+    final double bottom = (boundingBox.bottom * size.height).clamp(0, size.height - 1);
+
+    final Rect rect = Rect.fromLTRB(left, top, right, bottom);
+    canvas.drawRect(rect, paint);
   }
+}
+
+
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
