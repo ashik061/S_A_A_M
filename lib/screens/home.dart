@@ -5,6 +5,7 @@ import 'package:s_a_a_m/components/navigation_drawer.dart';
 import 'package:s_a_a_m/screens/create_class.dart';
 //import 'package:s_a_a_m/screens/face_scan.dart';
 import 'package:s_a_a_m/screens/join_class.dart';
+import 'package:s_a_a_m/face_detection/camera_screen.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -167,7 +168,7 @@ class Home extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Home(),
+                    builder: (context) => CameraScreen(),
                   ),
                 ),
                 child: Padding(

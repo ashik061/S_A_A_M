@@ -87,7 +87,7 @@
 //     // Read the image file as bytes
 //     Uint8List imageBytes = await _imageFile!.readAsBytes();
 
-//     // Convert the image to a format suitable for the model
+//    // Convert the image to a format suitable for the model
 //     var recognitions = await Tflite.runModelOnBinary(
 //       binary: imageBytes,
 //       numResults: 2,

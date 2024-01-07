@@ -8,7 +8,9 @@ import 'package:s_a_a_m/screens/create_class.dart';
 import 'package:s_a_a_m/screens/join_class.dart';
 
 class ClassesHome extends StatefulWidget {
-  ClassesHome({super.key});
+   ClassesHome({super.key});
+  // ignore: non_constant_identifier_names
+  static String routeName= "ClassesHome";
 
   final User? user = Auth().currentUser;
 
