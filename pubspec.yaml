@@ -37,16 +37,19 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^2.15.1
   firebase_auth: ^4.7.3
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.9.0
   google_nav_bar: ^5.0.6
   google_ml_kit: ^0.9.0
-  camera: ^0.10.5+3
+  camera: ^0.9.4+5
   path: ^1.8.2
-  path_provider: ^2.1.0
+  path_provider: ^2.0.15
   image_picker: ^1.0.2
   # firebase_ml_vision: ^0.12.0
-  image: ^4.0.17
+  image: ^3.0.2
   firebase_storage: ^11.2.6
+  tflite_flutter: ^0.9.0
+  tflite_flutter_helper: ^0.2.1
+  #tflite: ^1.1.2
   
   # firebase_core_platform_interface: 4.5.1
 

@@ -141,7 +141,7 @@ class _CameraScreenState extends State<CameraScreen> {
     final int height = face.boundingBox.height.toInt();
 
     final img.Image croppedFace =
-        img.copyCrop(originalImage, x: x, y: y, width: width, height: height);
+        img.copyCrop(originalImage,x,y,width,height);
     final Uint8List croppedBytes =
         Uint8List.fromList(img.encodeJpg(croppedFace));
 
